@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= titolo_pagina %></title>
+
+    <%- include('./pattern/head.ejs') %>
+    
+</head>
+<body>
+    
+    <div class="container-md">
+        
+        
+        <%- include('./pattern/header.ejs') %>
+        
+        <main class="my-5">
+
+          <h2>I nostri prodotti</h2>
+
+          <div class="row">
+
+              <!-- Colonna dei filtri -->
+              <div class="col-3">
+
+              </div>
+
+              <!-- Colonna elenco prodotti -->
+               <div class="col-9">
+
+                  <div class="row">
+                    <%
+              
+                       elenco_prodotti.forEach( (prodotto) => {
+                    %>
+                        <!-- Singolo PRODOTTO -->
+                      
+                          <div class="col-3">
+
+                            <div class="card">
+                              <img src="<%= prodotto.img_prodotto %>" class="card-img-top" alt="...">
+                              <div class="card-body">
+
+                                <a href="/scheda-prodotto/<%= prodotto.nome_prodotto  %>">
+                                  <h5 class="card-title"><%= prodotto.nome_prodotto  %></h5>
+                                </a>
+                                
+                                <h6><%= prodotto.prezzo  %></h6>
+                                
+                              </div>
+                            </div>
+
+                          </div>
+                          <!-- END Singolo PRODOTTO -->
+                      <%
+                        })
+                      %>
+
+                   
+
+
+                  </div>
+
+
+               </div>
+
+
+          </div>
+            
+        </main>
+        
+        
+        <%- include('./pattern/footer.ejs') %>
+
+    </div>
+
+    
+    <%- include('./pattern/lib-js.ejs') %>
+
+  </body>
+</html>
