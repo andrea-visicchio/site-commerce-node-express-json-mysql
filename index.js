@@ -32,24 +32,24 @@ app.get('/', (req, res) => {
 // ========== caricamento dati da file JSON =======================
 
 
+let dati = [];
+fs.readFile('./dati/elencoprodotti.json', 'utf8', (errore, cont_file) => {
 
+    if (errore) {
+        console.log("Errore nel caricamento del file JSON" + errore);
+    } else {
+        dati = JSON.parse(cont_file);
+    }
+
+});
 
 
 // ============================
 // gestione rotta per la pagina che ospiterà l'elendo dei prodotti
 app.get('/prodotti', (req, res) => {
 
-    let dati = [];
-        fs.readFile('./dati/elencoprodotti.json', 'utf8', (errore, cont_file) => {
 
-            if (errore) {
-                console.log("Errore nel caricamento del file JSON" + errore);
-            } else {
-                dati = JSON.parse(cont_file);
-            }
-
-        });
-        console.log(dati.length);
+        //console.log(dati.length);
         
 
         res.render('prodotti.ejs', {titolo_pagina : 'Elenco dei prodotti - Sito Commerce', elenco_prodotti : dati})
